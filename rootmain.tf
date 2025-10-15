@@ -1,5 +1,5 @@
 module "s3_backend" {
-  source      = "./modules/s3backend"
+  source      = "./modules/s3_backend"
   bucket_name = var.s3_bucket_name
   common_tags = var.common_tags
 }
