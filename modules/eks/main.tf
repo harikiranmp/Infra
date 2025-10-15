@@ -1,13 +1,13 @@
 
 resource "aws_eks_cluster" "eks-cluster" {
   name     = var.cluster_name
-  role_arn = var.cluster_role_arn
+  role_arn = aws_iam_role.eks_cluster_role.arn
   version  = var.kubernetes_version
 
   vpc_config {
     subnet_ids              = var.private_subnet_ids  
     endpoint_private_access = true
-    endpoint_public_access  = false
+    endpoint_public_access  = true
   }
 
   tags = merge(
@@ -71,7 +71,7 @@ resource "aws_eks_node_group" "eksng" {
     min_size     = var.node_min
   }
 
-  ami_type             = "AL2_x86_64"
+  ami_type             = "AL2023_x86_64_STANDARD"
   capacity_type        = "ON_DEMAND"
   disk_size            = 20
 

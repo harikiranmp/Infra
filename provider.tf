@@ -1,10 +1,12 @@
 terraform {
     required_version = ">= 1.10, < 1.14"
+
   backend "s3" {
-    bucket         = "demo-tfstate"        # Replace with your bucket name
+    bucket         = "hari-tfstate-2025"        
     key            = "terraform/state.tfstate"
-    region         = "us-east-1"
+    region         = "ap-south-1"
     encrypt        = true
+    use_lockfile    = true
   }
 
   required_providers {

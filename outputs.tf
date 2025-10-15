@@ -7,5 +7,5 @@ output "eks_cluster_name" {
 }
 
 output "s3_state_bucket" {
-  value = module.s3backend.bucket_name
+  value = module.s3_backend.bucket_name
 }
