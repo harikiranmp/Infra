@@ -36,6 +36,12 @@ resource "aws_instance" "bastion" {
   vpc_security_group_ids       = [aws_security_group.bastion_sg.id]
   associate_public_ip_address  = false
 
+  user_data = <<-EOF
+              #!/bin/bash
+              systemctl enable amazon-ssm-agent
+              systemctl restart amazon-ssm-agent
+              EOF
+
   tags = merge(
     var.common_tags,
     { Name = "bastion-ssm" }
