@@ -2,7 +2,7 @@
 resource "aws_security_group" "bastion_sg" {
   name        = "bastion-sg"
   description = "Security group for SSM bastion host"
-  vpc_id      = module.vpc.vpc_id
+  vpc_id      = var.vpc_id
 
   # No inbound rule (no SSH port open)
   egress {
@@ -61,7 +61,7 @@ data "aws_ami" "amazon_linux" {
 resource "aws_instance" "bastion" {
   ami                         = data.aws_ami.amazon_linux.id
   instance_type               = "t3.micro"
-  subnet_id                   = module.vpc.public_subnet_ids[0]
+  subnet_id                   = var.public_subnet_ids[0]
   iam_instance_profile         = aws_iam_instance_profile.bastion_profile.name
   vpc_security_group_ids       = [aws_security_group.bastion_sg.id]
   associate_public_ip_address  = false  # No public IP
