@@ -26,9 +26,10 @@ module "eks" {
 }
 
 module "bastion" {
-  source            = "./modules/bastion"
-  vpc_id            = module.vpc.vpc_id
-  public_subnet_ids = module.vpc.public_subnet_ids
-  common_tags       = var.common_tags
+  source              = "./modules/bastion"
+  vpc_id              = module.vpc.vpc_id
+  public_subnet_ids   = module.vpc.public_subnet_ids
+  iam_instance_profile = "bastion-ssm-role"
+  common_tags         = var.common_tags
 }
 
