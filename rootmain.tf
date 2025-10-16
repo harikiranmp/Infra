@@ -25,4 +25,8 @@ module "eks" {
   common_tags        = var.common_tags
 }
 
+module "bastion" {
+  source      = "./modules/bastion"
+  common_tags = var.common_tags
+}
 
