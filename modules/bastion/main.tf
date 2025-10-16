@@ -1,7 +1,7 @@
 resource "aws_security_group" "bastion_sg" {
   name        = "bastion-sg"
   description = "Security group for SSM bastion host"
-  vpc_id      = module.vpc.vpc_id
+  vpc_id      = var.vpc_id
 
   # No inbound rule (no SSH port open)
   egress {
