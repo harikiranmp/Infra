@@ -18,6 +18,11 @@ variable "private_subnets" {
   type        = list(string)
 }
 
+variable "aws_region" {
+  description = "AWS region for endpoint creation"
+  type        = string
+}
+
 variable "common_tags" {
   description = "Tags to apply to resources"
   type        = map(string)
